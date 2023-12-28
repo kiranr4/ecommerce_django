@@ -7,3 +7,4 @@ ecommerce/__pycache__/__init__.cpython-310.pyc
 ecommerce/__pycache__/settings.cpython-310.pyc
 ecommerce/__pycache__/urls.cpython-310.pyc
 ecommerce/__pycache__/wsgi.cpython-310.pyc
+ecom/__pycache__/views.cpython-310.pyc
