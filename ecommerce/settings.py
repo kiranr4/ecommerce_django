@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-n6y0jktc++)w09mpjn=6ejc5%#wlmsh)f#==*3v83$j@hr8=(i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    ## RK Custom Added
+    ## RK Custom added (app - ecom)
     'ecom',
 ]
 
@@ -58,8 +58,8 @@ ROOT_URLCONF = 'ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        ## RK Custom added
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        ## RK Custom added (templates)
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,14 +122,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-##K Custom definitions
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+##RK Custom added (definitions - STATIC_ROOT, STATICFILES_DIRS, MEDIA_URL, MEDIA_ROOT)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-MEDIA_URL = 'media/'
+MEDIA_URL = "media/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

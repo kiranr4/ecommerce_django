@@ -3,6 +3,6 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-##K Custom views
+##RK Custom added
 def index(request):
-    return render(request, 'ecom\index.html')
+    return render(request, "ecom\index.html")
