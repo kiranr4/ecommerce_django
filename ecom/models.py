@@ -56,7 +56,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, verbose_name="Product Category", on_delete=models.SET_NULL, null=True)
     brand = models.ForeignKey(Brand, verbose_name="Product Brand", on_delete=models.SET_NULL, blank=True, null=True)
     name = models.CharField(verbose_name="Product Name", max_length=50, unique=True)
-    slug = models.SlugField(max_length=255, unique=True, blank=True, editable=False)
+    slug = models.SlugField(max_length=50, unique=True, editable=False)
     image = models.ImageField(verbose_name="Product Image", upload_to="img_product/", height_field=None, width_field=None, max_length=None)
     description = models.TextField(verbose_name="Product Description", null=True, blank=True)
     created_at = models.DateTimeField(verbose_name="Product - Created Date", auto_now_add=True)
