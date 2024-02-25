@@ -4,6 +4,7 @@ from django.db import models
 
 from django.utils.html import mark_safe
 from shortuuid.django_fields import ShortUUIDField
+from django.utils.text import slugify
 
 
 class Brand(models.Model):
@@ -30,7 +31,7 @@ class Category(models.Model):
     id = models.AutoField(verbose_name="Category ID", primary_key=True)
     cid = ShortUUIDField(unique=True, length=7, max_length=10, alphabet="123456789", prefix="cat")
     name = models.CharField(verbose_name="Category Name", max_length=50, unique=True)
-    image = models.ImageField(verbose_name="Category Image", upload_to="img_category/", height_field=None, width_field=None, max_length=None)
+    image = models.ImageField(verbose_name="Category Image", upload_to="img_category/")
     created_at = models.DateTimeField(verbose_name="Category - Created Date", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="Category - Last Updated Date", auto_now=True)
 
@@ -40,7 +41,7 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
 
     def category_image(self):
-        return mark_safe('<img src="%s%" width="50" height="50" />' %(self.image.url))
+        return mark_safe('<img src="%s" width="50" height="50" />' % (self.image.url))
 
     def __str__(self):
         return self.name
@@ -62,7 +63,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(verbose_name="Product - Created Date", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="Product - Last Updated Date", auto_now=True)
     price = models.DecimalField(verbose_name="Price", max_digits=10, decimal_places=2)
-    is_featured = models.BooleanField(verbose_name="Fetured Product", default=False)
+    is_featured = models.BooleanField(verbose_name="Featured Product", default=False)
     is_popular = models.BooleanField(verbose_name="Popular Product", default=False)
 
     class Meta:
@@ -75,7 +76,7 @@ class Product(models.Model):
         super().save(*args, **kwargs)
 
     def product_image(self):
-        return mark_safe('<img src="%s%" width="50" height="50" />' %(self.image.url))
+        return mark_safe('<img src="%s" width="50" height="50" />' %(self.image.url))
 
     def __str__(self):
         return self.name
@@ -89,15 +90,12 @@ class ProductImage(models.Model):
     images = models.ImageField(verbose_name="Product Images", upload_to="img_product/")
     product = models.ForeignKey(Product, verbose_name="Product", on_delete=models.CASCADE)
     created_at = models.DateTimeField(verbose_name="Product Images - Created Date", auto_now_add=True)
-    updated_at = models.DateTimeField(verbose_name="Product Imageas- Last Updated Date", auto_now=True)
+    updated_at = models.DateTimeField(verbose_name="Product Images- Last Updated Date", auto_now=True)
 
 
     class Meta:
-        verbose_name = "ProductImage"
-        verbose_name_plural = "ProductImages"
-
-    def __str__(self):
-        return self.name
+        verbose_name = "Product Image"
+        verbose_name_plural = "Product Images"
 
     def get_absolute_url(self):
         return reverse("ProductImage_detail", kwargs={"pk": self.pk})

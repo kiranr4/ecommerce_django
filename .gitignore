@@ -162,3 +162,5 @@ cython_debug/
 
 ## RK Custom added
 ogani-master/
+ecom/migrations/
+media/
